@@ -24,9 +24,9 @@ Clone the repository, in your terminal of choice you navigate to the repo and fi
 
 # Supported commands
 
-`hx-init lang <Language>` will setup the environment required for the language.
+- `hx-init lang <Language>` will setup the environment required for the language.
+- `hx-init check` check if Helix Editor and npm are installed as these are required for some packages.
 
 # Upcoming commands
 
-- `hx-init check` check if Helix Editor and npm are installed as these are required for some packages.
 - `hx-init lang open <Language>` will setup the environment required for the language and also open a new Helix Editor instance in the current terminal.
