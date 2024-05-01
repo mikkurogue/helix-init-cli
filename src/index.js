@@ -1,74 +1,73 @@
 #!/usr/bin/env node
 
-import { program } from "commander"
+import { program } from "commander";
 
-import { execSync } from "child_process"
-import * as fs from "node:fs"
+import { execSync } from "child_process";
+import * as fs from "node:fs";
 
+console.log("Welcome, let's setup your Helix Editor env.");
 
-console.log("Welcome, let's setup your Helix Editor env.")
-
-program.command("config")
+program
+  .command("config")
   .description("Setup Helix Config")
-  .action(() => setupDefaultConfig())
+  .action(() => {
+    setupDefaultConfig()
+    setupLanguagesToml()
+  }
+  );
 
-program.command("lang")
+program
+  .command("lang")
   .description("Setup Helix env for lang")
   .argument("<lang>", "Setup Helix environment for specified language")
   .action((lang) => {
-    if (lang === 'typescript' || lang === 'ts') {
-      setupTypeScript()
+    if (lang === "typescript" || lang === "ts") {
+      setupTypeScript();
     }
-  })
+  });
 
-program.command("check")
+program
+  .command("check")
   .description("Check if hx is available")
   .action(() => {
-    checkHelixAvailable()
-  })
-
+    checkHelixAvailable();
+  });
 
 function setupTypeScript() {
+  console.log("Starting setup...");
 
-  console.log("Starting setup...")
-
-  console.log("Installing Typescript language server")
+  console.log("Installing Typescript language server");
   execSync("npm install -g typescript-language-server typescript");
 
-  console.log("Installing vscode langserver for Typescript")
-  execSync("npm i -g vscode-langservers-extracted")
+  console.log("Installing vscode langserver for Typescript");
+  execSync("npm i -g vscode-langservers-extracted");
 
-  console.log("Installing emmet-ls")
-  execSync("npm install -g emmet-ls")
+  console.log("Installing emmet-ls");
+  execSync("npm install -g emmet-ls");
 
-  console.log("Running hx --health to list installed LSP's")
-  execSync("hx --health")
+  console.log("Running hx --health to list installed LSP's");
+  execSync("hx --health");
 
-  console.log("Complete... Helix Editor is now configured for Typescript")
+  console.log("Complete... Helix Editor is now configured for Typescript");
 }
 
-
 function checkHelixAvailable() {
-  console.log("Running hx --health to see if helix available")
+  console.log("Running hx --health to see if helix available");
 
   try {
     execSync("hx --health");
-    console.log("Found hx!")
+    console.log("Found hx!");
   } catch (e) {
-    console.error("It seems I can not find hx")
+    console.error("It seems I can not find hx");
   }
-
 }
 
 function setupGo() {
+  console.log("Starting setup...");
 
-  console.log("Starting setup...")
-
-  console.log("Installing Go...")
-  execSync("")
-
+  console.log("Installing Go...");
+  execSync("");
 }
-
 
 // This sets up a default easy config that I use for helix currently.
 function setupDefaultConfig() {
@@ -100,24 +99,42 @@ C-s = ":w"
 C-S-s = ":w!"
   `;
 
-  const appDataPath = process.env.APPDATA || (process.platform === 'darwin' ? process.env.HOME + '/Library/Preferences' : '/var/local');
-  const filePath = `${appDataPath}/helix/config.toml`
+  const appDataPath = process.env.APPDATA || (process.platform === "darwin" ? process.env.HOME + "/Library/Preferences" : "/var/local");
+  const filePath = `${appDataPath}/helix/config.toml`;
 
-  fs.mkdirSync(`${appDataPath}/helix`, { recursive: true })
+  fs.mkdirSync(`${appDataPath}/helix`, { recursive: true });
 
   // Eventually add fs.existsSync to check if there is already an existing config and give the user input if they would like to overwrite their current config.
-  fs.writeFile(filePath, cfg, err => {
+  fs.writeFile(filePath, cfg, (err) => {
     if (err) {
-      console.error("There was a problem creating the Helix config. ", err)
+      console.error("There was a problem creating the Helix config. ", err);
     } else {
-      console.log("Helix config created succesfully.")
+      console.log("Helix config created succesfully.");
     }
-  })
-
+  });
 }
 
+function setupLanguagesToml() {
+  const langCfg = `[[language]]
+name = "typescript"
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "typescript"] }`
 
 
+  const appDataPath = process.env.APPDATA || (process.platform === "darwin" ? process.env.HOME + "/Library/Preferences" : "/var/local");
+  const filePath = `${appDataPath}/helix/languages.toml`;
 
-program.parse(process.argv)
 
+  fs.mkdirSync(`${appDataPath}/helix`, { recursive: true });
+
+  // Eventually add fs.existsSync to check if there is already an existing config and give the user input if they would like to overwrite their current config.
+  fs.writeFile(filePath, langCfg, (err) => {
+    if (err) {
+      console.error("There was a problem creating the Helix config. ", err);
+    } else {
+      console.log("Helix config created succesfully.");
+    }
+  });
+}
+
+program.parse(process.argv);
