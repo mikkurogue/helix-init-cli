@@ -26,7 +26,6 @@ function setupTypeScript() {
 
   console.log("Starting setup...")
 
-
   console.log("Installing Typescript language server")
   execSync("npm install -g typescript-language-server typescript");
 
@@ -37,12 +36,10 @@ function setupTypeScript() {
   execSync("npm install -g emmet-ls")
 
   console.log("Running hx --health to list installed LSP's")
-
   execSync("hx --health")
 
   console.log("Complete... Helix Editor is now configured for Typescript")
 }
-
 
 
 function checkHelixAvailable() {
@@ -55,6 +52,15 @@ function checkHelixAvailable() {
     console.error("It seems I can not find hx")
   }
 
+}
+
+function setupGo() {
+
+  console.log("Starting setup...")
+
+  console.log("Installing Go...")
+  execSync("")
+  
 }
 
 
