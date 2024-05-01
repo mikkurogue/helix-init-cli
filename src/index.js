@@ -84,7 +84,7 @@ function setupDefaultConfig() {
     
     [editor.cursor-shape]
     insert = "bar"
-    normal = "bar"
+    normal = "block"
     select = "underline"
 
     [editor.file-picker]
