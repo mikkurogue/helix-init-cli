@@ -72,33 +72,32 @@ function setupGo() {
 
 // This sets up a default easy config that I use for helix currently.
 function setupDefaultConfig() {
-  const cfg = `
-    theme = "curzon"
+  const cfg = `theme = "curzon"
 
-    [editor]
-    line-number = "absolute"
-    auto-format = true
-    text-width = 40
-    default-line-ending = "lf"
-    popup-border = "all"
-    
-    [editor.cursor-shape]
-    insert = "bar"
-    normal = "block"
-    select = "underline"
+[editor]
+line-number = "absolute"
+auto-format = true
+text-width = 40
+default-line-ending = "lf"
+popup-border = "all"
 
-    [editor.file-picker]
-    hidden = false
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
 
-    [editor.statusline]
-    center = ["version-control"]
-    mode.normal = "___NORMAL___"
-    mode.insert = "___INSERT___"
-    mode.select = "___VISUAL___" # this is select mode, but visual mode sounds nicer to me
+[editor.file-picker]
+hidden = false
 
-   [keys.normal]
-   C-s = ":w"
-   C-S-s = ":w!"
+[editor.statusline]
+center = ["version-control"]
+mode.normal = "___NORMAL___"
+mode.insert = "___INSERT___"
+mode.select = "___VISUAL___" # this is select mode, but visual mode sounds nicer to me
+
+[keys.normal]
+C-s = ":w"
+C-S-s = ":w!"
   `;
 
   const appDataPath = process.env.APPDATA || (process.platform === 'darwin' ? process.env.HOME + '/Library/Preferences' : '/var/local');
