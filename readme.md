@@ -24,10 +24,18 @@ Clone the repository, in your terminal of choice you navigate to the repo and fi
 
 # Supported commands
 
-- `hx-init lang <Language>` will setup the environment required for the language.
+- `hx-init <lang flag>` will setup the environment required for the language, see list of supported language flags below.
 - `hx-init check` check if Helix Editor and npm are installed as these are required for some packages.
-- `hx-init config` create the default config used by the author (thats me!). Feel free to eventually upgrade or make this command much smoother. This should work cross platform too.
+- `hx-init -cfg` create the default config used by the author (thats me!). Feel free to eventually upgrade or make this command much smoother. This should work cross platform too.
+
+# Supported language flags:
+
+```
+-ts
+-go (NYI)
+-rust (NYI)
+```
 
 # Upcoming commands
 
-- `hx-init lang open <Language>` will setup the environment required for the language and also open a new Helix Editor instance in the current terminal.
+- `hx-init <lang flag> -o` will setup the environment required for the language and also open a new Helix Editor instance in the current terminal.

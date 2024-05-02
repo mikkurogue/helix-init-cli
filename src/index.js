@@ -31,11 +31,11 @@ program
     }
 
     if (options.Go) {
-      console.log("Go setup is not yet supported")
+      console.log(chalk.yellow("Go setup is not yet supported"))
     }
 
     if (options.Rust) {
-      console.log("Rust setup is not yet supported")
+      console.log(chalk.yellow("Rust setup is not yet supported"))
     }
   });
 
@@ -66,7 +66,7 @@ function setupTypeScript() {
   console.log("Running hx --health to list installed LSP's");
   execSync("hx --health");
 
-  console.log("Complete... Helix Editor is now configured for Typescript");
+  console.log(chalk.green("Complete... Helix Editor is now configured for Typescript"));
 }
 
 function checkHelixAvailable() {
@@ -125,9 +125,9 @@ C-S-s = ":w!"
   // Eventually add fs.existsSync to check if there is already an existing config and give the user input if they would like to overwrite their current config.
   fs.writeFile(filePath, cfg, (err) => {
     if (err) {
-      console.error("There was a problem creating the Helix config. ", err);
+      console.log(chalk.red("There was a problem creating the Helix config."));
     } else {
-      console.log("Helix config created succesfully.");
+      console.log(chalk.green("Helix config created succesfully."));
     }
   });
 }
@@ -148,9 +148,9 @@ formatter = { command = "prettier", args = ["--parser", "typescript"] }`
   // Eventually add fs.existsSync to check if there is already an existing config and give the user input if they would like to overwrite their current config.
   fs.writeFile(filePath, langCfg, (err) => {
     if (err) {
-      console.error("There was a problem creating the Helix config. ", err);
+      console.log(chalk.red("There was a problem creating the Helix config."));
     } else {
-      console.log("Helix language config created succesfully.");
+      console.log(chalk.green("Helix language config created succesfully."));
     }
   });
 }
