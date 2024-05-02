@@ -87,7 +87,7 @@ function setupGo() {
 
 // This sets up a default easy config that I use for helix currently.
 function setupDefaultConfig() {
-  const cfg = `theme = "curzon"
+  const cfg = `theme = "default"
 
 [editor]
 line-number = "absolute"
@@ -134,7 +134,26 @@ function setupLanguagesToml() {
   const langCfg = `[[language]]
 name = "typescript"
 auto-format = true
-formatter = { command = "prettier", args = ["--parser", "typescript"] }`
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
+
+[[language]]
+name = "rust"
+scope = "source.rust"
+injection-regex = "rust"
+file-types = ["rs"]
+roots = ["Cargo.toml", "Cargo.lock"]
+shebangs = ["rust-script", "cargo"]
+auto-format = true
+comment-tokens = ["//", "///", "//!"]
+block-comment-tokens = [
+    { start = "/*", end = "*/" },
+    { start = "/**", end = "*/" },
+    { start = "/*!", end = "*/" },
+]
+language-servers = [ "rust-analyzer" ]
+indent = { tab-width = 4, unit = "    " }
+persistent-diagnostic-sources = ["rustc", "clippy"]
+]`
 
 
   const appDataPath = process.env.APPDATA || (process.platform === "darwin" ? process.env.HOME + "/Library/Preferences" : "/var/local");

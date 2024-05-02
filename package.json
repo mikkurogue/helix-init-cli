@@ -1,13 +1,13 @@
 {
   "name": "rogue-cli",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Simple cli to setup a helix environment with the required LSP",
   "main": "./src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "type": "module",
-  "author": "",
+  "author": "Mikkurogue",
   "license": "ISC",
   "bin": {
     "hx-init": "./src/index.js"
