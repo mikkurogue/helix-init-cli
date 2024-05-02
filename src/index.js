@@ -1,15 +1,18 @@
 #!/usr/bin/env node
 
 import { program } from "commander";
-
+import chalk from "chalk";
 import { execSync } from "child_process";
 import * as fs from "node:fs";
+
+const CLI_VERSION = "0.0.1"
 
 console.log("Welcome, let's setup your Helix Editor env.");
 
 program
-  .command("config")
+  .version(CLI_VERSION)
   .description("Setup Helix Config")
+  .option("--config, -cfg")
   .action(() => {
     setupDefaultConfig()
     setupLanguagesToml()
@@ -17,21 +20,36 @@ program
   );
 
 program
-  .command("lang")
+  .version(CLI_VERSION)
   .description("Setup Helix env for lang")
-  .argument("<lang>", "Setup Helix environment for specified language")
-  .action((lang) => {
-    if (lang === "typescript" || lang === "ts") {
+  .option("-ts")
+  .option("-go")
+  .option("-rust")
+  .action((options) => {
+    if (options.Ts) {
       setupTypeScript();
+    }
+
+    if (options.Go) {
+      console.log("Go setup is not yet supported")
+    }
+
+    if (options.Rust) {
+      console.log("Rust setup is not yet supported")
     }
   });
 
 program
+  .version(CLI_VERSION)
   .command("check")
   .description("Check if hx is available")
   .action(() => {
     checkHelixAvailable();
   });
+
+
+// start program to parse the commands
+program.parse(process.argv);
 
 function setupTypeScript() {
   console.log("Starting setup...");
@@ -132,9 +150,7 @@ formatter = { command = "prettier", args = ["--parser", "typescript"] }`
     if (err) {
       console.error("There was a problem creating the Helix config. ", err);
     } else {
-      console.log("Helix config created succesfully.");
+      console.log("Helix language config created succesfully.");
     }
   });
 }
-
-program.parse(process.argv);
