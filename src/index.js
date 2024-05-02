@@ -10,7 +10,6 @@ const CLI_VERSION = "0.0.1"
 console.log("Welcome, let's setup your Helix Editor env.");
 
 program
-  .version(CLI_VERSION)
   .description("Setup Helix Config")
   .option("--config, -cfg")
   .action(() => {
@@ -20,7 +19,6 @@ program
   );
 
 program
-  .version(CLI_VERSION)
   .description("Setup Helix env for lang")
   .option("-ts")
   .option("-go")
