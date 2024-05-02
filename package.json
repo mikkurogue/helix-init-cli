@@ -1,6 +1,6 @@
 {
   "name": "rogue-cli",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Simple cli to setup a helix environment with the required LSP",
   "main": "./src/index.js",
   "scripts": {
