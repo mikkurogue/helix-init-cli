@@ -7,14 +7,14 @@ import * as fs from "node:fs";
 
 const CLI_VERSION = "0.0.1"
 
-console.log("Welcome, let's setup your Helix Editor env.");
+console.log(chalk.green("Welcome, let's setup your Helix Editor env."));
 
 program
   .description("Setup Helix Config")
   .option("--config, -cfg")
   .action(() => {
     setupDefaultConfig()
-    setupLanguagesToml()
+    // setupLanguagesToml()
   }
   );
 
@@ -113,6 +113,7 @@ mode.select = "___VISUAL___" # this is select mode, but visual mode sounds nicer
 [keys.normal]
 C-s = ":w"
 C-S-s = ":w!"
+C-g = [":n", ":insert-output lazygit", ":bc!", "redraw"]
   `;
 
   const appDataPath = process.env.APPDATA || (process.platform === "darwin" ? process.env.HOME + "/Library/Preferences" : "/var/local");
