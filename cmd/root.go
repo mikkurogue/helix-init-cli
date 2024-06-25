@@ -82,6 +82,4 @@ mode.select = "___VISUAL___" # this is select mode, but visual mode sounds nicer
 
 [keys.normal]
 C-s = ":w"
-C-S-s = ":w!"
-C-g = [":n", ":insert-output lazygit", ":bc!", "redraw"]
-	`
+C-S-s = ":w!"`
