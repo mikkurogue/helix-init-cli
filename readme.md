@@ -1,41 +1,7 @@
 # hx-init
 
-After trying Helix Editor, and having 3 devices I decided its probably time to create a CLI tool that will install the LSP and other dependencies required for the languages.
-
-# Current support:
-
-- Typescript. This will install the typescript language server, typescript, vscode externals and lemmet-ls for prettier support.
-- Javascript. A byproduct of supporting Typescript.
-  - Also support for jsx and tsx as they are subsets of JS and TS
-
-# Upcoming support:
-
-- Rust
-- C#
-- C
-- C++
-- Go
-
-
-# Installation
-
-Clone the repository, in your terminal of choice you navigate to the repo and fire the command `npm install -g` after this the `hx-init` command should now be available. 
-
+After trying Helix Editor, and having 3 devices I decided its probably time to create a CLI tool that will give me the same config I prefer across all my devices. LSP's etc I am not yet sure if I want to support those with specific commands.
 
 # Supported commands
 
-- `hx-init <lang flag>` will setup the environment required for the language, see list of supported language flags below.
-- `hx-init check` check if Helix Editor and npm are installed as these are required for some packages.
-- `hx-init -cfg` create the default config used by the author (thats me!). Feel free to eventually upgrade or make this command much smoother. This should work cross platform too.
-
-# Supported language flags:
-
-```
--ts
--go (NYI)
--rust (NYI)
-```
-
-# Upcoming commands
-
-- `hx-init <lang flag> -o` will setup the environment required for the language and also open a new Helix Editor instance in the current terminal.
+Just simply run `hxi` and a config will be created for you
