@@ -8,28 +8,28 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var hx_cfg_dir string
+var hxConfigDir string
 
 var rootCmd = &cobra.Command{
 	Use: "hxi",
 	Run: func(cmd *cobra.Command, args []string) {
 
 		if runtime.GOOS == "windows" {
-			hx_cfg_dir = "%AppData%\\helix\\config.toml"
+			hxConfigDir = "%AppData%\\helix\\config.toml"
 		}
 
 		if runtime.GOOS != "windows" {
 
-			home_dir, err := os.UserHomeDir()
+			usrHomeDir, err := os.UserHomeDir()
 			if err != nil {
 				fmt.Println("Can not access home dir")
 				os.Exit(1)
 			}
 
-			hx_cfg_dir = home_dir + "/.config/helix/config.toml"
+			hxConfigDir = usrHomeDir + "/.config/helix/config.toml"
 		}
 
-		file, err := os.OpenFile(hx_cfg_dir, os.O_WRONLY|os.O_TRUNC|os.O_CREATE, 0644)
+		file, err := os.OpenFile(hxConfigDir, os.O_WRONLY|os.O_TRUNC|os.O_CREATE, 0644)
 		if err != nil {
 			fmt.Println("Error opening helix config")
 			os.Exit(1)
